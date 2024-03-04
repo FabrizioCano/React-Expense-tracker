@@ -1,11 +1,14 @@
 const express = require('express');
-
 const router = express.Router();
+const { getTransactions, addTransaction, deleteTransaction } = require('../controllers/transactions');
 
-const { getTransaction,addTransaction,deleteTransaction} = require("../controllers/transactions");
-// "/" represents /api/v1/transactions
-router.route("/").get(getTransaction).post(addTransaction);
+router
+  .route('/')
+  .get(getTransactions)
+  .post(addTransaction);
 
-router.route('/:id').delete(deleteTransaction)
+router
+  .route('/:id')
+  .delete(deleteTransaction);
 
 module.exports = router;
